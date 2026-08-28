@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#10061f" />
-  <title>Happy Birthday ✦</title>
+  <title>펭도리의 생일 ✦</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -17,15 +17,68 @@
     <div class="grain"></div>
 
     <section class="card" aria-labelledby="birthday-title">
-      <span class="eyebrow">A DAY MADE TO SHINE</span>
+      <span class="eyebrow">TODAY'S BRIGHTEST STAR</span>
       <p class="sparkle" aria-hidden="true">✦</p>
-      <h1 id="birthday-title">Happy<br /><em>Birthday</em></h1>
-      <p class="message">오늘의 주인공에게,<br />가장 찬란하고 행복한 순간들만 가득하길.</p>
+      <h1 id="birthday-title"><em>펭도리</em>의<br />Birthday</h1>
+      <p class="message">펭도리의 생일을 축하해!<br />받은 마음들을 소중히 기록해 보세요.</p>
       <div class="divider"><span></span> ✦ <span></span></div>
       <p class="signature">WITH ALL MY LOVE</p>
     </section>
 
+    <section class="gift-section" aria-labelledby="gift-title">
+      <div class="section-heading">
+        <span>GIFT ARCHIVE</span>
+        <h2 id="gift-title">펭도리의 선물 리스트</h2>
+        <p>마음이 담긴 선물을 연필로 기록해요.</p>
+      </div>
+
+      <form class="gift-form" id="gift-form">
+        <label>
+          <span>선물 준 사람</span>
+          <input id="giver" type="text" placeholder="예: 소중한 친구" required maxlength="20" />
+        </label>
+        <label>
+          <span>금액 또는 선물명</span>
+          <input id="gift" type="text" placeholder="예: 50,000원 · 향수" required maxlength="28" />
+        </label>
+        <button type="submit">선물 기록하기 <b>✦</b></button>
+      </form>
+
+      <ol class="pencil-list" id="pencil-list" aria-live="polite">
+        <li class="pencil-pencil featured"><span class="rank">01</span><span class="pencil-body"><b>첫 번째 선물</b><small>선물 준 사람 · 금액 또는 상품명</small></span><span class="pencil-tip"></span></li>
+        <li class="pencil-pencil featured"><span class="rank">02</span><span class="pencil-body"><b>두 번째 선물</b><small>선물 준 사람 · 금액 또는 상품명</small></span><span class="pencil-tip"></span></li>
+        <li class="pencil-pencil featured"><span class="rank">03</span><span class="pencil-body"><b>세 번째 선물</b><small>선물 준 사람 · 금액 또는 상품명</small></span><span class="pencil-tip"></span></li>
+      </ol>
+    </section>
+
     <p class="footer-note">MAKE A WISH · IT'S YOUR MOMENT</p>
   </main>
+
+  <script>
+    const form = document.querySelector('#gift-form');
+    const list = document.querySelector('#pencil-list');
+    let count = 3;
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const giver = document.querySelector('#giver').value.trim();
+      const gift = document.querySelector('#gift').value.trim();
+      if (!giver || !gift) return;
+
+      count += 1;
+      const item = document.createElement('li');
+      item.className = 'pencil-pencil';
+      item.innerHTML = '<span class="rank">' + String(count).padStart(2, '0') + '</span><span class="pencil-body"><b>' + escapeHtml(giver) + '</b><small>' + escapeHtml(gift) + '</small></span><span class="pencil-tip"></span>';
+      list.appendChild(item);
+      form.reset();
+      item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    function escapeHtml(value) {
+      const node = document.createElement('div');
+      node.textContent = value;
+      return node.innerHTML;
+    }
+  </script>
 </body>
 </html>
