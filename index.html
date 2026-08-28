@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
   <main class="celebration">
@@ -44,41 +45,11 @@
         <button type="submit">선물 기록하기 <b>✦</b></button>
       </form>
 
-      <ol class="pencil-list" id="pencil-list" aria-live="polite">
-        <li class="pencil-pencil featured"><span class="rank">01</span><span class="pencil-body"><b>첫 번째 선물</b><small>선물 준 사람 · 금액 또는 상품명</small></span><span class="pencil-tip"></span></li>
-        <li class="pencil-pencil featured"><span class="rank">02</span><span class="pencil-body"><b>두 번째 선물</b><small>선물 준 사람 · 금액 또는 상품명</small></span><span class="pencil-tip"></span></li>
-        <li class="pencil-pencil featured"><span class="rank">03</span><span class="pencil-body"><b>세 번째 선물</b><small>선물 준 사람 · 금액 또는 상품명</small></span><span class="pencil-tip"></span></li>
-      </ol>
+      <ol class="pencil-list" id="pencil-list" aria-live="polite"></ol>
+      <p class="empty-state" id="empty-state">첫 번째 마음을 기록해 펭도리의 선물 아카이브를 시작해요 ✦</p>
     </section>
 
     <p class="footer-note">MAKE A WISH · IT'S YOUR MOMENT</p>
   </main>
-
-  <script>
-    const form = document.querySelector('#gift-form');
-    const list = document.querySelector('#pencil-list');
-    let count = 3;
-
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const giver = document.querySelector('#giver').value.trim();
-      const gift = document.querySelector('#gift').value.trim();
-      if (!giver || !gift) return;
-
-      count += 1;
-      const item = document.createElement('li');
-      item.className = 'pencil-pencil';
-      item.innerHTML = '<span class="rank">' + String(count).padStart(2, '0') + '</span><span class="pencil-body"><b>' + escapeHtml(giver) + '</b><small>' + escapeHtml(gift) + '</small></span><span class="pencil-tip"></span>';
-      list.appendChild(item);
-      form.reset();
-      item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
-
-    function escapeHtml(value) {
-      const node = document.createElement('div');
-      node.textContent = value;
-      return node.innerHTML;
-    }
-  </script>
 </body>
 </html>
