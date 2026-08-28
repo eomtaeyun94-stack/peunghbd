@@ -6,12 +6,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBX6ntyFgNmJSu4VF5fkJzwxktImnQkGOg",
-  authDomain: "gen-lang-client-0587348229.firebaseapp.com",
-  projectId: "gen-lang-client-0587348229",
-  storageBucket: "gen-lang-client-0587348229.firebasestorage.app",
-  messagingSenderId: "930644900079",
-  appId: "1:930644900079:web:cffa6151195388d2a7431a"
+  apiKey: "AIzaSyCUeBs0DlyjASDW9SsBWRXC2zJ7n3RsSBg",
+  authDomain: "for-peung.firebaseapp.com",
+  projectId: "for-peung",
+  storageBucket: "for-peung.firebasestorage.app",
+  messagingSenderId: "343434963959",
+  appId: "1:343434963959:web:8bfd0a137fcf61f1329cf2",
+  measurementId: "G-C4GWG4E7ML"
 };
 
 const form = document.querySelector('#gift-form');
